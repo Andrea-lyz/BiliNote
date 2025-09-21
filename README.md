@@ -138,11 +138,13 @@ sudo apt install ffmpeg
    .\venv\Scripts\activate
    
    # 安装支持 CUDA 的 PyTorch（选择与你的 CUDA 版本匹配的）
-   # CUDA 12.1 (推荐):
+   # CUDA 12.1 (推荐，兼容性最好):
    pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
    
-   # CUDA 11.8:
+   # CUDA 11.8 (如果你的GPU只支持CUDA 11.8):
    # pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu118
+   
+   # 注意：CUDA 13.0 目前PyTorch暂不支持，请使用 CUDA 12.1
    ```
 
 3. **安装项目依赖**：
