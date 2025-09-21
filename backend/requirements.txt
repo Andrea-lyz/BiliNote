@@ -1,3 +1,9 @@
+# CUDA加速版本安装说明：
+# 1. 首先安装支持CUDA的PyTorch（根据你的CUDA版本选择合适的PyTorch版本）
+#    pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+# 2. 然后安装其他依赖：pip install -r requirements.txt
+# 注意：CUDA版本需要NVIDIA GPU和对应的CUDA工具箱
+
 aiohappyeyeballs==2.6.1
 aiohttp==3.11.16
 aiosignal==1.3.2
@@ -30,7 +36,10 @@ email_validator==2.2.0
 exceptiongroup==1.2.2
 fastapi==0.115.12
 fastapi-cli==0.0.7
-faster-whisper==1.1.1
+# CUDA support for faster-whisper
+torch>=2.0.0
+torchaudio>=2.0.0
+faster-whisper[cuda]==1.1.1
 ffmpeg-python==0.2.0
 filelock==3.18.0
 flatbuffers==25.2.10

@@ -66,6 +66,24 @@ mv .env.example .env
 
 ### 2. 启动后端（FastAPI）
 
+#### Windows 本地部署：
+```bash
+cd backend
+
+# 创建虚拟环境
+python -m venv venv
+
+# 激活虚拟环境
+.\venv\Scripts\activate
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 启动后端服务
+python main.py
+```
+
+#### Linux/Mac 部署：
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -74,13 +92,20 @@ python main.py
 
 ### 3. 启动前端（Vite + React）
 
+#### 安装依赖管理器：
+```bash
+# 安装 pnpm (如果没有)
+npm install -g pnpm
+```
+
+#### 启动前端：
 ```bash
 cd BillNote_frontend
 pnpm install
 pnpm dev
 ```
 
-访问：`http://localhost:5173`
+访问：`http://localhost:3015`
 
 ## ⚙️ 依赖说明
 ### 🎬 FFmpeg
@@ -98,7 +123,37 @@ sudo apt install ffmpeg
 > ⚠️ 若系统无法识别 ffmpeg，请将其加入系统环境变量 PATH
 
 ### 🚀 CUDA 加速（可选）
-若你希望更快地执行音频转写任务，可使用具备 NVIDIA GPU 的机器，并启用 fast-whisper + CUDA 加速版本：
+若你希望更快地执行音频转写任务，可使用具备 NVIDIA GPU 的机器，并启用 fast-whisper + CUDA 加速版本。
+
+#### Windows CUDA 部署步骤：
+1. **检查硬件要求**：
+   - NVIDIA GPU（GTX 10系列及以上）
+   - 最新 NVIDIA 驱动
+   - CUDA Toolkit 11.8 或 12.1
+
+2. **安装 CUDA 版本的 PyTorch**：
+   ```bash
+   # 激活虚拟环境
+   cd backend
+   .\venv\Scripts\activate
+   
+   # 安装支持 CUDA 的 PyTorch（选择与你的 CUDA 版本匹配的）
+   # CUDA 12.1 (推荐):
+   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+   
+   # CUDA 11.8:
+   # pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu118
+   ```
+
+3. **安装项目依赖**：
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **验证 CUDA 安装**：
+   ```bash
+   python -c "import torch; print('CUDA available:', torch.cuda.is_available())"
+   ```
 
 具体 `fast-whisper` 配置方法，请参考：[fast-whisper 项目地址](http://github.com/SYSTRAN/faster-whisper#requirements)
 
