@@ -37,9 +37,11 @@ exceptiongroup==1.2.2
 fastapi==0.115.12
 fastapi-cli==0.0.7
 # CUDA support for faster-whisper
+# Install CUDA-enabled PyTorch first with:
+# pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
 torch>=2.0.0
 torchaudio>=2.0.0
-faster-whisper[cuda]==1.1.1
+faster-whisper==1.1.1
 ffmpeg-python==0.2.0
 filelock==3.18.0
 flatbuffers==25.2.10

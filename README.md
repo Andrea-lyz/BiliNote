@@ -144,6 +144,9 @@ sudo apt install ffmpeg
    pip install torch==2.4.1+cu121 torchvision==0.19.1+cu121 torchaudio==2.4.1+cu121 --index-url https://download.pytorch.org/whl/cu121
    
    # 方法3：使用conda（如果安装了Anaconda/Miniconda）
+   # 注意：需要Python 3.8-3.12，Python 3.13暂不支持
+   # conda create -n bilibote python=3.11
+   # conda activate bilibote
    # conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
    
    # CUDA 11.8 (如果你的GPU只支持CUDA 11.8):
@@ -165,6 +168,8 @@ sudo apt install ffmpeg
 #### CUDA 安装故障排除：
 - **网络问题**：如果安装失败，尝试使用代理或VPN
 - **版本兼容**：确保你的CUDA驱动版本与PyTorch CUDA版本兼容
+- **Python版本**：PyTorch目前支持Python 3.8-3.12，Python 3.13暂不支持
+- **Conda环境**：如果使用conda，建议创建新环境：`conda create -n bilibote python=3.11`
 - **替代方案**：如果pip安装有问题，可以尝试从[PyTorch官网](https://pytorch.org/get-started/locally/)获取安装命令
 - **验证方法**：运行上述验证命令，确保CUDA available显示True
 
