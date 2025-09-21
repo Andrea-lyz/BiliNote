@@ -137,9 +137,14 @@ sudo apt install ffmpeg
    cd backend
    .\venv\Scripts\activate
    
-   # 安装支持 CUDA 的 PyTorch（选择与你的 CUDA 版本匹配的）
-   # CUDA 12.1 (推荐，兼容性最好):
-   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+   # 方法1：使用PyTorch官方安装命令（推荐）
+   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+   
+   # 方法2：如果方法1失败，尝试指定版本
+   pip install torch==2.4.1+cu121 torchvision==0.19.1+cu121 torchaudio==2.4.1+cu121 --index-url https://download.pytorch.org/whl/cu121
+   
+   # 方法3：使用conda（如果安装了Anaconda/Miniconda）
+   # conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
    
    # CUDA 11.8 (如果你的GPU只支持CUDA 11.8):
    # pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu118
@@ -154,8 +159,14 @@ sudo apt install ffmpeg
 
 4. **验证 CUDA 安装**：
    ```bash
-   python -c "import torch; print('CUDA available:', torch.cuda.is_available())"
+   python -c "import torch; print('PyTorch version:', torch.__version__); print('CUDA available:', torch.cuda.is_available()); print('CUDA version:', torch.version.cuda if torch.cuda.is_available() else 'N/A')"
    ```
+
+#### CUDA 安装故障排除：
+- **网络问题**：如果安装失败，尝试使用代理或VPN
+- **版本兼容**：确保你的CUDA驱动版本与PyTorch CUDA版本兼容
+- **替代方案**：如果pip安装有问题，可以尝试从[PyTorch官网](https://pytorch.org/get-started/locally/)获取安装命令
+- **验证方法**：运行上述验证命令，确保CUDA available显示True
 
 具体 `fast-whisper` 配置方法，请参考：[fast-whisper 项目地址](http://github.com/SYSTRAN/faster-whisper#requirements)
 
